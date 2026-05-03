@@ -1,5 +1,17 @@
 # Warehouse Autonomous Robot (ROS2 + Nav2)
 
+Simulation (Gazebo world)
+        ↓
+Robot Spawn (TurtleBot3)
+        ↓
+TF + Robot State (robot_state_publisher)
+        ↓
+Localization (AMCL)
+        ↓
+Navigation (Nav2)
+        ↓
+Autonomous movement
+
 ## 🚀 Overview
 Autonomous mobile robot navigating a warehouse using ROS2 Nav2 stack.
 
