@@ -47,7 +47,7 @@ The system successfully demonstrates:
 | RViz2 | Visualization and localization |
 | Python | Autonomous mission scripting |
 | AMCL | Localization |
-| Git & GitHub | Version control and portfolio |
+| Git & GitHub | Version control |
 
 ---
 
