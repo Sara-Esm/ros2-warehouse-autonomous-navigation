@@ -6,18 +6,6 @@ This project demonstrates an autonomous mobile robot navigating a realistic ware
 
 The robot is capable of localizing itself on a map, planning safe paths, avoiding obstacles, and autonomously navigating between multiple warehouse destinations such as a charging station, loading zone, shelf inspection points, and central warehouse aisles.
 
-This project was developed as part of a robotics engineering portfolio to demonstrate practical experience in:
-
-- ROS 2 development
-- Autonomous navigation
-- Nav2 configuration
-- AMCL localization
-- Gazebo simulation
-- Robot mission planning
-- Autonomous waypoint navigation
-- Robotics debugging and system integration
-- Git and GitHub workflow
-
 ---
 
 # Demo Features
