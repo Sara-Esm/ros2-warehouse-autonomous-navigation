@@ -1,10 +1,25 @@
 # Autonomous Warehouse Navigation with ROS 2 Nav2
 
-## Overview
+![ROS2](https://img.shields.io/badge/ROS2-Humble-blue)
+![Gazebo](https://img.shields.io/badge/Gazebo-11-orange)
+![Nav2](https://img.shields.io/badge/Nav2-Autonomous_Navigation-green)
+![License](https://img.shields.io/badge/License-MIT-brightgreen)
+
+---
+
+# Overview
 
 This project demonstrates an autonomous mobile robot navigating a realistic warehouse environment using ROS 2 Humble, Gazebo, TurtleBot3, and the Nav2 navigation stack.
 
 The robot is capable of localizing itself on a map, planning safe paths, avoiding obstacles, and autonomously navigating between multiple warehouse destinations such as a charging station, loading zone, shelf inspection points, and central warehouse aisles.
+
+---
+
+# Project Motivation
+
+The goal of this project was to build a complete autonomous warehouse navigation system using ROS 2 and Nav2 while gaining hands-on experience with localization, path planning, autonomous mission execution, simulation, debugging, and robotics software integration.
+
+This project was developed as part of a robotics engineering portfolio focused on autonomous mobile robots and intelligent robotic systems.
 
 ---
 
@@ -271,20 +286,14 @@ Potential future upgrades:
 
 ---
 
-# Screenshots
+# Project Preview
 
-Add screenshots inside:
+Screenshots and demo visuals will be added here:
 
-```text
-media/
-```
-
-Example screenshots:
-
-- Gazebo warehouse environment
-- RViz navigation
-- Robot path planning
-- Autonomous mission execution
+- Gazebo warehouse simulation
+- RViz localization and navigation
+- Autonomous robot mission execution
+- Nav2 path planning visualization
 
 ---
 
@@ -302,12 +311,26 @@ This project provided hands-on experience with:
 
 ---
 
+# Key Engineering Skills Demonstrated
+
+- ROS 2 package development
+- Autonomous mobile robot navigation
+- Nav2 stack integration
+- AMCL localization
+- Gazebo simulation environments
+- Multi-goal mission execution
+- Python robotics node development
+- Linux and WSL2 robotics workflow
+- Git and GitHub version control
+- Robotics system debugging and integration
+
+---
+
 # Author
 
 Sara Esmaeili
 
-Electrical and Control Engineer  
-Robotics | ROS 2 | Autonomous Navigation | AI | Machine Learning
+Electrical and Control Engineer focused on Robotics, Autonomous Navigation, ROS 2, AI, and Machine Learning.
 
 GitHub:
 https://github.com/Sara-Esm
