@@ -1,0 +1,24 @@
+# ROS2 / Colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+
+# VSCode
+.vscode/
+
+# Linux
+*.swp
+*~
+
+# Gazebo cache
+*.db
+
+# RViz configs generated
+*.rviz~
+
+# Ignore ROS bag files
+*.bag
