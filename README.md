@@ -284,7 +284,7 @@ Potential future upgrades:
 
 # Project Preview
 
-Screenshots and demo visuals will be added here:
+Screenshots##
 
 - Gazebo warehouse simulation
 - RViz localization and navigation
