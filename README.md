@@ -19,8 +19,6 @@ The robot is capable of localizing itself on a map, planning safe paths, avoidin
 
 The goal of this project was to build a complete autonomous warehouse navigation system using ROS 2 and Nav2 while gaining hands-on experience with localization, path planning, autonomous mission execution, simulation, debugging, and robotics software integration.
 
-This project was developed as part of a robotics engineering portfolio focused on autonomous mobile robots and intelligent robotic systems.
-
 ---
 
 # Demo Features
