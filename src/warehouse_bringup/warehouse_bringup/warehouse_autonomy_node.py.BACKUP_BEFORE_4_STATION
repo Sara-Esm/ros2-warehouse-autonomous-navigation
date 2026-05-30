@@ -34,46 +34,55 @@ class WarehouseAutonomy(Node):
 
         self.waypoints = [
             {
-                'name': 'Home Charging Dock',
-                'task': 'Verify robot home dock and charging station',
-                'x': -3.678,
-                'y': 9.3,
-                'yaw': 90.0,
+                'name': 'Charging Dock Station',
+                'task': 'Verify charging dock availability',
+                'x': -7.131,
+                'y': -6.491,
+                'yaw': 180.0,
                 'marker_id': 0,
             },
             {
-                'name': 'Loading Zone',
-                'task': 'Verify loading area',
-                'x': 1.803,
-                'y': 9.3,
-                'yaw': 90.0,
+                'name': 'Inbound Package Loading Zone',
+                'task': 'Simulate inbound package pickup',
+                'x': 9.785,
+                'y': -2.849,
+                'yaw': 0.0,
                 'marker_id': 1,
             },
             {
-                'name': 'Inventory Scan Station',
-                'task': 'Verify shelf inventory using wall marker',
-                'x': 1.801,
-                'y': -9.3,
-                'yaw': -90.0,
+                'name': 'Inventory Scan Station A',
+                'task': 'Scan inventory at Station A',
+                'x': 0.493,
+                'y': -0.944,
+                'yaw': 90.0,
                 'marker_id': 2,
             },
             {
-                'name': 'Dispatch Zone',
-                'task': 'Verify dispatch area',
-                'x': -3.630,
-                'y': -9.3,
-                'yaw': -90.0,
+                'name': 'Inventory Scan Station B',
+                'task': 'Scan inventory at Station B',
+                'x': 2.997,
+                'y': -6.240,
+                'yaw': 180.0,
                 'marker_id': 3,
             },
             {
-                'name': 'Return to Home Charging Dock',
-                'task': 'Return robot to charging dock and close mission',
-                'x': -3.678,
-                'y': 9.3,
+                'name': 'Autonomous Patrol Corridor',
+                'task': 'Perform autonomous corridor patrol',
+                'x': 2.359,
+                'y': -2.495,
                 'yaw': 90.0,
+                'marker_id': None,
+            },
+            {
+                'name': 'Mission Return Dock',
+                'task': 'Return to charging dock and close mission',
+                'x': -7.131,
+                'y': -6.491,
+                'yaw': 180.0,
                 'marker_id': 0,
             },
         ]
+
         self.current_index = 0
         self.successful_tasks = 0
         self.failed_tasks = 0
@@ -209,3 +218,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+

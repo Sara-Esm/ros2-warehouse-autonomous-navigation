@@ -1,0 +1,13 @@
+material Aruco/aruco_marker_0
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture charging_dock.png
+      }
+    }
+  }
+}
