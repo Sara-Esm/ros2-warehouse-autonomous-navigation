@@ -177,7 +177,7 @@ sudo apt install python3-opencv ros-humble-cv-bridge
 ```bash
 mkdir -p ~/warehouse_ws/src
 cd ~/warehouse_ws/src
-git clone https://github.com/zesmaeili/ros2-warehouse-autonomous-navigation.git .
+git clone https://github.com/Sara-Esm/ros2-warehouse-autonomous-navigation.git .
 
 cd ~/warehouse_ws
 colcon build
