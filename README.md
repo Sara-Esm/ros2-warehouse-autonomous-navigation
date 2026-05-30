@@ -50,8 +50,8 @@ Total mission steps: 5  |  Successful tasks: 5  |  Failed tasks: 0
 │  └──────┬──────┘  └──────────────┘  └───────────────────┘   │
 │         │                                                   │
 │  ┌──────▼──────────────────┐                                │
-│  │   warehouse_perception   │                               │
-│  │  ArUco Station Detector  │                               │
+│  │   warehouse_perception  │                               │
+│  │  ArUco Station Detector │                               │
 │  │  /camera/image_raw  →   │                                │
 │  │  /warehouse/marker_id   │                                │
 │  └─────────────────────────┘                                │
