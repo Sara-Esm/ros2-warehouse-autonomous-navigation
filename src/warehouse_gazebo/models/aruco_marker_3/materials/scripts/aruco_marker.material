@@ -1,0 +1,13 @@
+material Aruco/aruco_marker_3
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture inventory_station_b.png
+      }
+    }
+  }
+}

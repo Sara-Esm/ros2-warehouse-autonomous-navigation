@@ -1,0 +1,253 @@
+#!/usr/bin/env python3
+
+import math
+import time
+import rclpy
+
+from rclpy.node import Node
+from rclpy.action import ActionClient
+from nav2_msgs.action import NavigateToPose
+from geometry_msgs.msg import PoseStamped
+from action_msgs.msg import GoalStatus
+
+
+def yaw_to_quaternion(yaw_deg):
+    yaw_rad = math.radians(yaw_deg)
+    qz = math.sin(yaw_rad / 2.0)
+    qw = math.cos(yaw_rad / 2.0)
+    return qz, qw
+
+
+class WarehouseAutonomy(Node):
+
+    def __init__(self):
+        super().__init__('warehouse_autonomy')
+
+        self.client = ActionClient(
+            self,
+            NavigateToPose,
+            'navigate_to_pose'
+        )
+
+        self.waypoints = [
+            {
+                'name': 'Charging Dock Station',
+                'task': 'charging_check',
+                'x': -7.131,
+                'y': -6.491,
+                'yaw': 180.0,
+                'marker_id': 0,
+            },
+            {
+                'name': 'Inbound Package Loading Zone',
+                'task': 'load_pickup',
+                'x': 9.785,
+                'y': -2.849,
+                'yaw': 0.0,
+                'marker_id': 1,
+            },
+            {
+                'name': 'Inventory Scan Station A',
+                'task': 'shelf_scan',
+                'x': 0.493,
+                'y': -0.944,
+                'yaw': 90.0,
+                'marker_id': 2,
+            },
+            {
+                'name': 'Inventory Scan Station B',
+                'task': 'shelf_scan',
+                'x': 2.997,
+                'y': -6.240,
+                'yaw': 180.0,
+                'marker_id': 3,
+            },
+            {
+                'name': 'Autonomous Patrol Corridor',
+                'task': 'aisle_patrol',
+                'x': 2.359,
+                'y': -2.495,
+                'yaw': 90.0,
+                'marker_id': None,
+            },
+            {
+                'name': 'Mission Return Dock',
+                'task': 'mission_docking',
+                'x': -7.131,
+                'y': -6.491,
+                'yaw': 180.0,
+                'marker_id': None,
+            },
+            {
+                'name': 'Emergency Zone',
+                'x': 5.0,
+              'y': -1.0,
+             'yaw': 180.0,
+              'marker_id': None,
+            }
+        ]
+
+        self.current_waypoint = 0
+        self.successful_tasks = 0
+        self.failed_tasks = 0
+
+        self.get_logger().info('Warehouse autonomy workflow manager started.')
+        self.get_logger().info('Waiting for Nav2 action server...')
+
+        self.client.wait_for_server()
+
+        self.get_logger().info('Nav2 is ready. Starting warehouse mission in 3 seconds...')
+        time.sleep(3)
+
+        self.send_next_goal()
+
+    def send_next_goal(self):
+
+        if self.current_waypoint >= len(self.waypoints):
+            self.print_mission_summary()
+            return
+
+        waypoint = self.waypoints[self.current_waypoint]
+
+        name = waypoint['name']
+        x = waypoint['x']
+        y = waypoint['y']
+        yaw = waypoint['yaw']
+
+        qz, qw = yaw_to_quaternion(yaw)
+
+        goal_msg = NavigateToPose.Goal()
+        pose = PoseStamped()
+
+        pose.header.frame_id = 'map'
+        pose.header.stamp = self.get_clock().now().to_msg()
+
+        pose.pose.position.x = x
+        pose.pose.position.y = y
+        pose.pose.position.z = 0.0
+        pose.pose.orientation.z = qz
+        pose.pose.orientation.w = qw
+
+        goal_msg.pose = pose
+
+        self.get_logger().info('----------------------------------------')
+        self.get_logger().info(
+            f'MISSION STEP {self.current_waypoint + 1}/{len(self.waypoints)}'
+        )
+        self.get_logger().info(
+            f'Navigating to {name}: x={x}, y={y}, yaw={yaw} deg'
+        )
+
+        future = self.client.send_goal_async(goal_msg)
+        future.add_done_callback(self.goal_response_callback)
+
+    def goal_response_callback(self, future):
+
+        goal_handle = future.result()
+
+        if not goal_handle.accepted:
+            waypoint = self.waypoints[self.current_waypoint]
+            self.get_logger().error(
+                f'Goal rejected by Nav2 for {waypoint["name"]}. Skipping task.'
+            )
+            self.failed_tasks += 1
+            self.current_waypoint += 1
+            time.sleep(2)
+            self.send_next_goal()
+            return
+
+        self.get_logger().info('Goal accepted by Nav2.')
+
+        result_future = goal_handle.get_result_async()
+        result_future.add_done_callback(self.goal_result_callback)
+
+    def goal_result_callback(self, future):
+
+        result = future.result()
+        status = result.status
+
+        waypoint = self.waypoints[self.current_waypoint]
+        name = waypoint['name']
+
+        if status == GoalStatus.STATUS_SUCCEEDED:
+            self.get_logger().info(f'ARRIVED: {name}')
+
+            task_success = self.execute_station_task(waypoint)
+
+            if task_success:
+                self.successful_tasks += 1
+                self.get_logger().info(f'TASK COMPLETE: {name}')
+            else:
+                self.failed_tasks += 1
+                self.get_logger().warn(f'TASK FAILED OR SKIPPED: {name}')
+
+        else:
+            self.failed_tasks += 1
+            self.get_logger().error(f'NAVIGATION FAILED: {name}, status={status}')
+
+        self.current_waypoint += 1
+        time.sleep(2)
+        self.send_next_goal()
+
+    def execute_station_task(self, waypoint):
+
+        name = waypoint['name']
+        task = waypoint['task']
+
+        self.get_logger().info(f'Verifying station: {name}')
+        time.sleep(1)
+
+        if task == 'charging_check':
+            self.get_logger().info('Checking charging dock availability...')
+            time.sleep(1)
+            self.get_logger().info('Charging dock verified.')
+
+        elif task == 'load_pickup':
+            self.get_logger().info('Simulating inbound package pickup...')
+            time.sleep(2)
+            self.get_logger().info('Inbound package pickup confirmed.')
+
+        elif task == 'shelf_scan':
+            self.get_logger().info('Simulating inventory shelf scan...')
+            time.sleep(2)
+            self.get_logger().info('Inventory scan data collected.')
+
+        elif task == 'aisle_patrol':
+            self.get_logger().info('Performing autonomous patrol corridor check...')
+            time.sleep(2)
+            self.get_logger().info('Patrol corridor check completed.')
+
+        elif task == 'mission_docking':
+            self.get_logger().info('Returning to dock for mission closeout...')
+            time.sleep(2)
+            self.get_logger().info('Robot parked at return dock.')
+
+        else:
+            self.get_logger().warn(f'Unknown task type: {task}')
+            return False
+
+        return True
+
+    def print_mission_summary(self):
+
+        total = len(self.waypoints)
+
+        self.get_logger().info('========================================')
+        self.get_logger().info('WAREHOUSE MISSION COMPLETE')
+        self.get_logger().info(f'Total mission steps: {total}')
+        self.get_logger().info(f'Successful tasks: {self.successful_tasks}')
+        self.get_logger().info(f'Failed tasks: {self.failed_tasks}')
+        self.get_logger().info('Robot completed autonomous warehouse workflow.')
+        self.get_logger().info('========================================')
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = WarehouseAutonomy()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()

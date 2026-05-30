@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="aruco_marker">
+    <static>true</static>
+
+    <link name="marker_link">
+      <visual name="marker_visual">
+        <geometry>
+          <plane>
+            <normal>1 0 0</normal>
+            <size>0.8 0.8</size>
+          </plane>
+        </geometry>
+
+        <material>
+          <script>
+            <uri>model://aruco_marker/materials/scripts</uri>
+            <uri>model://aruco_marker/materials/textures</uri>
+            <name>Aruco/InventoryStationA</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

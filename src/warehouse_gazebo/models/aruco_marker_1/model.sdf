@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="aruco_marker_1">
+    <static>true</static>
+    <link name="marker_link">
+
+      <visual name="white_backing_board">
+        <pose>0 0 -0.01 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.35 0.35 0.03</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="aruco_front_surface">
+        <pose>0 0 0.02 0 0 0</pose>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>0.28 0.28</size>
+          </plane>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_marker_1/materials/scripts</uri>
+            <uri>model://aruco_marker_1/materials/textures</uri>
+            <name>Aruco/aruco_marker_1</name>
+          </script>
+        </material>
+      </visual>
+
+    </link>
+  </model>
+</sdf>

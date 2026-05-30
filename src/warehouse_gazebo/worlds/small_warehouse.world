@@ -10,12 +10,12 @@
     </physics>
 
     
-        <!--model name="aws_robomaker_warehouse_RoofB_01_001">
+        <!-- <model name="aws_robomaker_warehouse_RoofB_01_001">
         <include>
             <uri>model://aws_robomaker_warehouse_RoofB_01</uri>
         </include>
         <pose frame="">0.0 0.0 0 0 0 0</pose>
-	</model-->
+	</model> -->
 
         <model name="aws_robomaker_warehouse_ShelfF_01_001">
         <include>
@@ -232,13 +232,35 @@
       <direction>0.1 0.1 -1</direction>
     </light>
 
-    <gui fullscreen='0'>
-      <camera name='user_camera'>
-        <pose frame=''>-4.70385 10.895 16.2659 -0 0.921795 -1.12701</pose>
-        <view_controller>orbit</view_controller>
-        <projection_type>perspective</projection_type>
-      </camera>
-    </gui>
+
+    <!-- Charging Dock -->
+    <include>
+      <uri>model://aruco_marker_0</uri>
+      <name>charging_dock_marker</name>
+      <pose>-3.678265 9.97 0.40 0 1.5708 -1.5708</pose>
+    </include>
+
+    <!-- Loading Zone -->
+    <include>
+      <uri>model://aruco_marker_1</uri>
+      <name>loading_zone_marker</name>
+      <pose>1.802768 9.97 0.40 0 1.5708 -1.5708</pose>
+    </include>
+
+    <!-- Inventory Scan Station -->
+    <include>
+      <uri>model://aruco_marker_2</uri>
+      <name>inventory_scan_station_marker</name>
+      <pose>1.800570 -9.97 0.40  0 1.5708 1.5708</pose>
+    </include>
+
+    <!-- Dispatch Zone -->
+    <include>
+      <uri>model://aruco_marker_3</uri>
+      <name>dispatch_zone_marker</name>
+      <pose>-3.629830 -9.97 0.40 0 1.5708 1.5708</pose>
+    </include>
+
 
   </world>
 </sdf>
