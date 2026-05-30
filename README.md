@@ -39,22 +39,22 @@ Total mission steps: 5  |  Successful tasks: 5  |  Failed tasks: 0
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    warehouse_bringup                        │
-│  ┌─────────────┐  ┌──────────────┐  ┌───────────────────┐  │
-│  │   Gazebo    │  │     Nav2     │  │  Autonomy Node    │  │
-│  │ Simulation  │  │   Stack      │  │  (Mission Manager)│  │
-│  └──────┬──────┘  └──────┬───────┘  └────────┬──────────┘  │
+│  ┌─────────────┐  ┌──────────────┐  ┌───────────────────┐   │
+│  │   Gazebo    │  │     Nav2     │  │  Autonomy Node    │   │
+│  │ Simulation  │  │   Stack      │  │  (Mission Manager)│   │
+│  └──────┬──────┘  └──────┬───────┘  └────────┬──────────┘   │
 │         │                │                    │             │
-│  ┌──────▼──────┐  ┌──────▼───────┐  ┌────────▼──────────┐  │
-│  │ TurtleBot3  │  │ AMCL + Map   │  │  NavigateToPose   │  │
-│  │  burger_cam │  │    Server    │  │   Action Client   │  │
-│  └──────┬──────┘  └──────────────┘  └───────────────────┘  │
+│  ┌──────▼──────┐  ┌──────▼───────┐  ┌────────▼──────────┐   │
+│  │ TurtleBot3  │  │ AMCL + Map   │  │  NavigateToPose   │   │
+│  │  burger_cam │  │    Server    │  │   Action Client   │   │
+│  └──────┬──────┘  └──────────────┘  └───────────────────┘   │
 │         │                                                   │
-│  ┌──────▼──────────────────┐                               │
+│  ┌──────▼──────────────────┐                                │
 │  │   warehouse_perception   │                               │
 │  │  ArUco Station Detector  │                               │
-│  │  /camera/image_raw  →   │                               │
-│  │  /warehouse/marker_id   │                               │
-│  └─────────────────────────┘                               │
+│  │  /camera/image_raw  →   │                                │
+│  │  /warehouse/marker_id   │                                │
+│  └─────────────────────────┘                                │
 └─────────────────────────────────────────────────────────────┘
 ```
 
