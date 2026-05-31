@@ -14,7 +14,8 @@
 
 ## 📽️ Demo
 
-![Uploading Desktop-screenshot-05-30-2026_05_02_PM.png…]()
+<img width="1914" height="1030" alt="Desktop-screenshot-05-30-2026_05_02_PM" src="https://github.com/user-attachments/assets/dab35b3e-c798-4f6f-ab84-d8b0b9bfa21b" />
+
 
 ```
 WAREHOUSE MISSION COMPLETE
