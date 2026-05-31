@@ -17,6 +17,11 @@
 <img width="1914" height="1030" alt="Desktop-screenshot-05-30-2026_05_02_PM" src="https://github.com/user-attachments/assets/dab35b3e-c798-4f6f-ab84-d8b0b9bfa21b" />
 
 
+
+https://github.com/user-attachments/assets/dd4ea783-c78a-4fe2-baad-43189c4052af
+
+
+
 ```
 WAREHOUSE MISSION COMPLETE
 Total mission steps: 5  |  Successful tasks: 5  |  Failed tasks: 0
