@@ -28,6 +28,7 @@ class WarehouseAutonomy(Node):
 
         self.marker_detected = False
         self.marker_id = None
+        self.marker_id_stamp = None
 
         self.create_subscription(Bool, '/warehouse/marker_detected', self.marker_detected_cb, 10)
         self.create_subscription(Int32, '/warehouse/marker_id', self.marker_id_cb, 10)
@@ -53,7 +54,7 @@ class WarehouseAutonomy(Node):
                 'name': 'Inventory Scan Station',
                 'task': 'Verify shelf inventory using wall marker',
                 'x': 1.801,
-                'y': -9.3,
+                'y': -9.0,
                 'yaw': -90.0,
                 'marker_id': 2,
             },
@@ -93,6 +94,7 @@ class WarehouseAutonomy(Node):
 
     def marker_id_cb(self, msg):
         self.marker_id = msg.data
+        self.marker_id_stamp = self.get_clock().now()
 
     def send_next_goal(self):
         if self.current_index >= len(self.waypoints):
@@ -173,15 +175,18 @@ class WarehouseAutonomy(Node):
             self.get_logger().info('No visual marker required for this waypoint.')
             return True
 
+        arrival_stamp = self.get_clock().now()
         self.get_logger().info(f'Looking for ArUco marker ID {expected_marker}...')
 
         start_time = time.time()
-        timeout = 8.0
+        timeout = 15.0
 
         while time.time() - start_time < timeout:
             rclpy.spin_once(self, timeout_sec=0.2)
 
-            if self.marker_detected and self.marker_id == expected_marker:
+            if (self.marker_id == expected_marker and
+                    self.marker_id_stamp is not None and
+                    self.marker_id_stamp >= arrival_stamp):
                 self.get_logger().info(
                     f'Correct marker detected: expected={expected_marker}, detected={self.marker_id}'
                 )
