@@ -246,7 +246,7 @@ ros2 run nav2_map_server map_saver_cli -f ~/warehouse_ws/src/warehouse_bringup/m
 **Mission Orchestration** (`warehouse_autonomy_node.py`)
 - Uses `NavigateToPose` action client for non-blocking navigation
 - Callback-driven state machine advances through waypoints on goal completion
-- 8-second vision verification window at each station with graceful timeout handling
+- 15-second vision verification window at each station with graceful timeout handling
 
 **ArUco Detection** (`aruco_station_detector.py`)
 - Subscribes to `/camera/image_raw`, publishes to `/warehouse/marker_detected` and `/warehouse/marker_id`
@@ -270,6 +270,13 @@ ros2 run nav2_map_server map_saver_cli -f ~/warehouse_ws/src/warehouse_bringup/m
 - [ ] Autonomous recovery and marker search behaviour
 - [ ] ROS 2 lifecycle node management
 - [ ] Unit and integration tests
+
+---
+
+## 👩‍💻 Author
+
+**Sara Esmaeili** — Robotics Software Engineer
+GitHub: [@Sara-Esm](https://github.com/Sara-Esm)
 
 ---
 
