@@ -9,8 +9,7 @@
 
 > A fully autonomous warehouse inspection robot built with ROS 2 Humble, Nav2, and computer vision. The robot navigates to 4 warehouse stations, verifies each location using ArUco marker detection, and returns home — completing a full mission with zero human intervention.
 
----<img width="1914" height="1030" alt="Desktop-screenshot-05-30-2026_05_02_PM" src="https://github.com/user-attachments/assets/55f364ff-3fff-4f5d-94f5-cba75d7d652c" />
-![Uploading Desktop-screenshot-05-30-2026_05_02_PM.png…]()
+---
 
 
 ## 📽️ Demo
