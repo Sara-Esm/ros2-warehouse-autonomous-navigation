@@ -6,6 +6,7 @@ import time
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
+from action_msgs.msg import GoalStatus
 
 from nav2_msgs.action import NavigateToPose
 from geometry_msgs.msg import PoseStamped
@@ -85,7 +86,7 @@ class WarehouseAutonomy(Node):
         self.navigator.wait_for_server()
 
         self.get_logger().info('Nav2 is ready. Starting warehouse mission in 3 seconds...')
-        time.sleep(3)
+        time.sleep(10)
 
         self.send_next_goal()
 
@@ -149,6 +150,17 @@ class WarehouseAutonomy(Node):
 
     def goal_result_callback(self, future):
         wp = self.waypoints[self.current_index]
+        status = future.result().status
+
+        if status != GoalStatus.STATUS_SUCCEEDED:
+            self.get_logger().error(
+                f"Navigation FAILED for {wp['name']} (status: {status})"
+            )
+            self.failed_tasks += 1
+            self.current_index += 1
+            time.sleep(2)
+            self.send_next_goal()
+            return
 
         self.get_logger().info(f"ARRIVED: {wp['name']}")
 

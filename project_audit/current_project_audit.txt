@@ -1,0 +1,1028 @@
+===== GIT STATUS =====
+On branch warehouse-vision-upgrade
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	deleted:    src/warehouse_bringup/launch/warehouse_autonomy.launch.py
+	deleted:    src/warehouse_bringup/launch/warehouse_autonomy_WORKING_BASE.launch.py
+	deleted:    src/warehouse_bringup/launch/warehouse_autonomy_WORKING_GAZEBO_TB3.launch.py
+	deleted:    src/warehouse_bringup/launch/warehouse_full_system.launch.py
+	deleted:    src/warehouse_bringup/launch/warehouse_full_system_STABLE_NAV2_SUCCESS.launch.py
+	deleted:    src/warehouse_bringup/launch/warehouse_full_system_WORKING.launch.py
+	deleted:    src/warehouse_bringup/launch/warehouse_nav2.launch.py
+	deleted:    src/warehouse_bringup/launch/warehouse_nav2_WORKING_NAV2.launch.py
+	modified:   src/warehouse_bringup/setup.py
+	modified:   src/warehouse_bringup/warehouse_bringup/warehouse_autonomy_node.py
+	modified:   src/warehouse_gazebo/worlds/small_warehouse.world
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	project_audit/
+	src/warehouse_bringup/launch/archive/
+	src/warehouse_bringup/launch/warehouse_navigation.launch.py
+	src/warehouse_bringup/launch/warehouse_robot_system.launch.py
+	src/warehouse_bringup/launch/warehouse_robot_system_camera.launch.py
+	src/warehouse_bringup/launch/warehouse_simulation.launch.py
+	src/warehouse_bringup/launch/warehouse_simulation_camera.launch.py
+	src/warehouse_docking/
+	src/warehouse_gazebo/markers/
+	src/warehouse_gazebo/models/aruco_marker/
+	src/warehouse_gazebo/models/aruco_marker_0/
+	src/warehouse_gazebo/models/aruco_marker_1/
+	src/warehouse_gazebo/models/aruco_marker_2/
+	src/warehouse_gazebo/models/aruco_marker_3/
+	src/warehouse_gazebo/scripts/
+	src/warehouse_mission/
+	src/warehouse_perception/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+===== SRC PACKAGES =====
+src/warehouse_perception/package.xml
+src/warehouse_mission/package.xml
+src/warehouse_gazebo/package.xml
+src/aws-robomaker-small-warehouse-world/package.xml
+src/warehouse_bringup/package.xml
+src/warehouse_docking/package.xml
+
+===== SRC TREE LEVEL 2 =====
+src
+├── aws-robomaker-small-warehouse-world
+│   ├── CMakeLists.txt
+│   ├── CODE_OF_CONDUCT.md
+│   ├── COLCON_IGNORE
+│   ├── CONTRIBUTING.md
+│   ├── LICENSE
+│   ├── README.md
+│   ├── docs
+│   ├── launch
+│   ├── maps
+│   ├── models
+│   ├── package.xml
+│   ├── rviz
+│   └── worlds
+├── turtlebot3
+│   ├── CONTRIBUTING.md
+│   ├── Dockerfile
+│   ├── ISSUE_TEMPLATE.md
+│   ├── LICENSE
+│   ├── README.md
+│   ├── docker-compose.yml
+│   ├── turtlebot3
+│   ├── turtlebot3.repos
+│   ├── turtlebot3_bringup
+│   ├── turtlebot3_cartographer
+│   ├── turtlebot3_ci.repos
+│   ├── turtlebot3_description
+│   ├── turtlebot3_example
+│   ├── turtlebot3_navigation2
+│   ├── turtlebot3_node
+│   └── turtlebot3_teleop
+├── warehouse_bringup
+│   ├── launch
+│   ├── package.xml
+│   ├── resource
+│   ├── setup.cfg
+│   ├── setup.py
+│   ├── test
+│   └── warehouse_bringup
+├── warehouse_docking
+│   ├── package.xml
+│   ├── resource
+│   ├── setup.cfg
+│   ├── setup.py
+│   ├── test
+│   └── warehouse_docking
+├── warehouse_gazebo
+│   ├── launch
+│   ├── markers
+│   ├── models
+│   ├── package.xml
+│   ├── resource
+│   ├── scripts
+│   ├── setup.cfg
+│   ├── setup.py
+│   ├── test
+│   ├── warehouse_gazebo
+│   └── worlds
+├── warehouse_mission
+│   ├── launch
+│   ├── package.xml
+│   ├── resource
+│   ├── setup.cfg
+│   ├── setup.py
+│   ├── test
+│   └── warehouse_mission
+└── warehouse_perception
+    ├── package.xml
+    ├── resource
+    ├── setup.cfg
+    ├── setup.py
+    ├── test
+    └── warehouse_perception
+
+43 directories, 30 files
+
+===== BRINGUP LAUNCH FILES =====
+src/warehouse_bringup/launch
+├── CMakeLists.txt
+├── archive
+│   ├── warehouse_autonomy.launch.py
+│   ├── warehouse_autonomy.launch.py.BACKUP
+│   ├── warehouse_autonomy_WORKING_BASE.launch.py
+│   ├── warehouse_autonomy_WORKING_GAZEBO_TB3.launch.py.BACKUP
+│   ├── warehouse_full_system.launch.py
+│   ├── warehouse_full_system_STABLE_NAV2_SUCCESS.launch.py
+│   ├── warehouse_full_system_WORKING.launch.py
+│   └── warehouse_nav2.launch.py
+├── warehouse_navigation.launch.py
+├── warehouse_robot_system.launch.py
+├── warehouse_robot_system_camera.launch.py
+├── warehouse_simulation.launch.py
+└── warehouse_simulation_camera.launch.py
+
+1 directory, 14 files
+
+===== WAREHOUSE PACKAGES =====
+src/warehouse_bringup
+├── launch
+│   ├── CMakeLists.txt
+│   ├── archive
+│   │   ├── warehouse_autonomy.launch.py
+│   │   ├── warehouse_autonomy.launch.py.BACKUP
+│   │   ├── warehouse_autonomy_WORKING_BASE.launch.py
+│   │   ├── warehouse_autonomy_WORKING_GAZEBO_TB3.launch.py.BACKUP
+│   │   ├── warehouse_full_system.launch.py
+│   │   ├── warehouse_full_system_STABLE_NAV2_SUCCESS.launch.py
+│   │   ├── warehouse_full_system_WORKING.launch.py
+│   │   └── warehouse_nav2.launch.py
+│   ├── warehouse_navigation.launch.py
+│   ├── warehouse_robot_system.launch.py
+│   ├── warehouse_robot_system_camera.launch.py
+│   ├── warehouse_simulation.launch.py
+│   └── warehouse_simulation_camera.launch.py
+├── package.xml
+├── resource
+│   └── warehouse_bringup
+├── setup.cfg
+├── setup.py
+├── test
+│   ├── test_copyright.py
+│   ├── test_flake8.py
+│   └── test_pep257.py
+└── warehouse_bringup
+    ├── __init__.py
+    ├── __pycache__
+    │   ├── __init__.cpython-310.pyc
+    │   └── warehouse_autonomy_node.cpython-310.pyc
+    └── warehouse_autonomy_node.py
+
+6 directories, 25 files
+src/warehouse_gazebo
+├── launch
+│   ├── turtlebot3_in_warehouse.launch.py
+│   └── turtlebot3_warehouse.launch.py
+├── markers
+│   ├── generate_markers.py
+│   └── generated
+│       ├── charging_dock.png
+│       ├── inventory_station_a.png
+│       ├── inventory_station_b.png
+│       └── loading_zone.png
+├── models
+│   ├── aruco_marker
+│   │   ├── materials
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aruco_marker_0
+│   │   ├── materials
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aruco_marker_1
+│   │   ├── materials
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aruco_marker_2
+│   │   ├── materials
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aruco_marker_3
+│   │   ├── materials
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_Bucket_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_ClutteringA_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_ClutteringC_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_ClutteringD_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_DeskC_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_GroundB_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_Lamp_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_PalletJackB_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_RoofB_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_ShelfD_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_ShelfE_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_ShelfF_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   ├── aws_robomaker_warehouse_TrashCanC_01
+│   │   ├── materials
+│   │   ├── meshes
+│   │   ├── model.config
+│   │   └── model.sdf
+│   └── aws_robomaker_warehouse_WallB_01
+│       ├── materials
+│       ├── meshes
+│       ├── model.config
+│       └── model.sdf
+├── package.xml
+├── resource
+│   └── warehouse_gazebo
+├── scripts
+│   └── create_aruco_marker_models.py
+├── setup.cfg
+├── setup.py
+├── test
+│   ├── test_copyright.py
+│   ├── test_flake8.py
+│   └── test_pep257.py
+├── warehouse_gazebo
+│   └── __init__.py
+└── worlds
+    └── small_warehouse.world
+
+61 directories, 55 files
+src/warehouse_perception
+├── package.xml
+├── resource
+│   └── warehouse_perception
+├── setup.cfg
+├── setup.py
+├── test
+│   ├── test_copyright.py
+│   ├── test_flake8.py
+│   └── test_pep257.py
+└── warehouse_perception
+    ├── __init__.py
+    ├── __pycache__
+    │   ├── __init__.cpython-310.pyc
+    │   └── aruco_station_detector.cpython-310.pyc
+    └── aruco_station_detector.py
+
+4 directories, 11 files
+src/warehouse_docking
+├── package.xml
+├── resource
+│   └── warehouse_docking
+├── setup.cfg
+├── setup.py
+├── test
+│   ├── test_copyright.py
+│   ├── test_flake8.py
+│   └── test_pep257.py
+└── warehouse_docking
+    ├── __init__.py
+    ├── __pycache__
+    │   ├── __init__.cpython-310.pyc
+    │   └── vision_docking_controller.cpython-310.pyc
+    └── vision_docking_controller.py
+
+4 directories, 11 files
+src/warehouse_mission
+├── launch
+│   └── warehouse_mission.launch.py
+├── package.xml
+├── resource
+│   └── warehouse_mission
+├── setup.cfg
+├── setup.py
+├── test
+│   ├── test_copyright.py
+│   ├── test_flake8.py
+│   └── test_pep257.py
+└── warehouse_mission
+    ├── __init__.py
+    ├── __pycache__
+    │   ├── __init__.cpython-310.pyc
+    │   └── warehouse_mission_manager.cpython-310.pyc
+    └── warehouse_mission_manager.py
+
+5 directories, 12 files
+
+===== SETUP FILES =====
+from setuptools import find_packages, setup
+from glob import glob
+import os
+
+package_name = 'warehouse_bringup'
+
+setup(
+    name=package_name,
+    version='0.0.0',
+    packages=find_packages(exclude=['test']),
+    data_files=[
+        ('share/ament_index/resource_index/packages',
+            ['resource/' + package_name]),
+        ('share/' + package_name, ['package.xml']),
+        (
+            os.path.join('share', package_name, 'launch'),
+            glob('launch/*.launch.py')
+        ),
+    ],
+    install_requires=['setuptools'],
+    zip_safe=True,
+    maintainer='owl',
+    maintainer_email='zesmaeili85@gmail.com',
+    description='Bringup package for the autonomous warehouse robot system.',
+    license='MIT',
+    tests_require=['pytest'],
+    entry_points={
+        'console_scripts': [
+            'warehouse_autonomy = warehouse_bringup.warehouse_autonomy_node:main',
+        ],
+    },
+)from setuptools import find_packages, setup
+
+package_name = 'warehouse_perception'
+
+setup(
+    name=package_name,
+    version='0.0.0',
+    packages=find_packages(exclude=['test']),
+    data_files=[
+        ('share/ament_index/resource_index/packages',
+            ['resource/' + package_name]),
+        ('share/' + package_name, ['package.xml']),
+    ],
+    install_requires=['setuptools'],
+    zip_safe=True,
+    maintainer='owl',
+    maintainer_email='zesmaeili85@gmail.com',
+    description='Perception package for warehouse station detection using OpenCV ArUco markers.',
+    license='MIT',
+    tests_require=['pytest'],
+    entry_points={
+        'console_scripts': [
+            'aruco_station_detector = warehouse_perception.aruco_station_detector:main',
+        ],
+    },
+)from setuptools import setup
+
+package_name = 'warehouse_docking'
+
+setup(
+    name=package_name,
+    version='0.0.0',
+    packages=[package_name],
+    install_requires=['setuptools'],
+    zip_safe=True,
+    maintainer='owl',
+    maintainer_email='owl@todo.todo',
+    description='Vision-guided docking controller',
+    license='Apache License 2.0',
+    tests_require=['pytest'],
+    entry_points={
+        'console_scripts': [
+            'vision_docking_controller = warehouse_docking.vision_docking_controller:main',
+        ],
+    },
+)
+from setuptools import setup, find_packages
+import os
+from glob import glob
+
+package_name = 'warehouse_gazebo'
+
+def package_files(directory):
+    paths = []
+    for (path, directories, filenames) in os.walk(directory):
+        for filename in filenames:
+            paths.append(os.path.join(path, filename))
+    return paths
+
+model_files = package_files('models')
+
+data_files = [
+    ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
+    ('share/' + package_name, ['package.xml']),
+    (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
+    (os.path.join('share', package_name, 'worlds'), glob('worlds/*.world')),
+    (os.path.join('share', package_name, 'models'), model_files),
+]
+
+setup(
+    name=package_name,
+    version='0.0.0',
+    packages=find_packages(),
+    data_files=data_files,
+    install_requires=['setuptools'],
+    zip_safe=True,
+    maintainer='owl',
+    maintainer_email='zesmaeili85@gmail.com',
+    description='Warehouse Gazebo launch files',
+    license='MIT',
+    tests_require=['pytest'],
+    entry_points={'console_scripts': []},
+)
+
+===== WORLD MARKERS =====
+    <!-- ArUco Marker ID 0: Charging Dock TEST -->
+    <include>
+      <uri>model://aruco_marker_0</uri>
+      <name>charging_dock_marker</name>
+      <pose>-2.0 -2.0 0.45 0 0 0</pose>
+    </include>
+
+    <!-- ArUco Marker ID 1: Loading Zone TEST -->
+    <include>
+      <uri>model://aruco_marker_1</uri>
+      <name>loading_zone_marker</name>
+      <pose>-0.7 -2.0 0.45 0 0 0</pose>
+    </include>
+
+    <!-- ArUco Marker ID 2: Inventory Station A TEST -->
+    <include>
+      <uri>model://aruco_marker_2</uri>
+      <name>inventory_station_a_marker</name>
+      <pose>0.7 -2.0 0.45 0 0 0</pose>
+    </include>
+
+    <!-- ArUco Marker ID 3: Inventory Station B TEST -->
+    <include>
+      <uri>model://aruco_marker_3</uri>
+      <name>inventory_station_b_marker</name>
+      <pose>2.0 -2.0 0.45 0 0 0</pose>
+    </include>
+
+  </world>
+
+===== AUTONOMY NODE =====
+#!/usr/bin/env python3
+
+import math
+import time
+import rclpy
+
+from rclpy.node import Node
+from rclpy.action import ActionClient
+from nav2_msgs.action import NavigateToPose
+from geometry_msgs.msg import PoseStamped
+from action_msgs.msg import GoalStatus
+
+
+def yaw_to_quaternion(yaw_deg):
+    yaw_rad = math.radians(yaw_deg)
+    qz = math.sin(yaw_rad / 2.0)
+    qw = math.cos(yaw_rad / 2.0)
+    return qz, qw
+
+
+class WarehouseAutonomy(Node):
+
+    def __init__(self):
+        super().__init__('warehouse_autonomy')
+
+        self.client = ActionClient(
+            self,
+            NavigateToPose,
+            'navigate_to_pose'
+        )
+
+        self.waypoints = [
+            {
+                'name': 'Charging Dock Station',
+                'task': 'charging_check',
+                'x': -7.131,
+                'y': -6.491,
+                'yaw': 9.481,
+            },
+            {
+                'name': 'Inbound Package Loading Zone',
+                'task': 'load_pickup',
+                'x': 9.785,
+                'y': -2.849,
+                'yaw': 0.493,
+            },
+            {
+                'name': 'Inventory Scan Station A',
+                'task': 'shelf_scan',
+                'x': 0.493,
+                'y': -0.944,
+                'yaw': -67.400,
+            },
+            {
+                'name': 'Inventory Scan Station B',
+                'task': 'shelf_scan',
+                'x': 2.997,
+                'y': -6.240,
+                'yaw': -11.774,
+            },
+            {
+                'name': 'Autonomous Patrol Corridor',
+                'task': 'aisle_patrol',
+                'x': 2.359,
+                'y': -2.495,
+                'yaw': 10.807,
+            },
+            {
+                'name': 'Mission Return Dock',
+                'task': 'mission_docking',
+                'x': -7.131,
+                'y': -6.491,
+                'yaw': 9.481,
+            },
+        ]
+
+        self.current_waypoint = 0
+        self.successful_tasks = 0
+        self.failed_tasks = 0
+
+        self.get_logger().info('Warehouse autonomy workflow manager started.')
+        self.get_logger().info('Waiting for Nav2 action server...')
+
+        self.client.wait_for_server()
+
+        self.get_logger().info('Nav2 is ready. Starting warehouse mission in 3 seconds...')
+        time.sleep(3)
+
+        self.send_next_goal()
+
+    def send_next_goal(self):
+
+        if self.current_waypoint >= len(self.waypoints):
+            self.print_mission_summary()
+            return
+
+        waypoint = self.waypoints[self.current_waypoint]
+
+        name = waypoint['name']
+        x = waypoint['x']
+        y = waypoint['y']
+        yaw = waypoint['yaw']
+
+        qz, qw = yaw_to_quaternion(yaw)
+
+        goal_msg = NavigateToPose.Goal()
+        pose = PoseStamped()
+
+        pose.header.frame_id = 'map'
+        pose.header.stamp = self.get_clock().now().to_msg()
+
+        pose.pose.position.x = x
+        pose.pose.position.y = y
+        pose.pose.position.z = 0.0
+        pose.pose.orientation.z = qz
+        pose.pose.orientation.w = qw
+
+        goal_msg.pose = pose
+
+        self.get_logger().info('----------------------------------------')
+        self.get_logger().info(
+            f'MISSION STEP {self.current_waypoint + 1}/{len(self.waypoints)}'
+        )
+        self.get_logger().info(
+            f'Navigating to {name}: x={x}, y={y}, yaw={yaw} deg'
+        )
+
+        future = self.client.send_goal_async(goal_msg)
+        future.add_done_callback(self.goal_response_callback)
+
+    def goal_response_callback(self, future):
+
+        goal_handle = future.result()
+
+        if not goal_handle.accepted:
+            waypoint = self.waypoints[self.current_waypoint]
+            self.get_logger().error(
+                f'Goal rejected by Nav2 for {waypoint["name"]}. Skipping task.'
+            )
+            self.failed_tasks += 1
+            self.current_waypoint += 1
+            time.sleep(2)
+            self.send_next_goal()
+            return
+
+        self.get_logger().info('Goal accepted by Nav2.')
+
+        result_future = goal_handle.get_result_async()
+        result_future.add_done_callback(self.goal_result_callback)
+
+    def goal_result_callback(self, future):
+
+        result = future.result()
+        status = result.status
+
+        waypoint = self.waypoints[self.current_waypoint]
+        name = waypoint['name']
+
+        if status == GoalStatus.STATUS_SUCCEEDED:
+            self.get_logger().info(f'ARRIVED: {name}')
+
+            task_success = self.execute_station_task(waypoint)
+
+            if task_success:
+                self.successful_tasks += 1
+                self.get_logger().info(f'TASK COMPLETE: {name}')
+            else:
+                self.failed_tasks += 1
+                self.get_logger().warn(f'TASK FAILED OR SKIPPED: {name}')
+
+        else:
+            self.failed_tasks += 1
+            self.get_logger().error(f'NAVIGATION FAILED: {name}, status={status}')
+
+        self.current_waypoint += 1
+        time.sleep(2)
+        self.send_next_goal()
+
+    def execute_station_task(self, waypoint):
+
+        name = waypoint['name']
+        task = waypoint['task']
+
+        self.get_logger().info(f'Verifying station: {name}')
+        time.sleep(1)
+
+        if task == 'charging_check':
+            self.get_logger().info('Checking charging dock availability...')
+            time.sleep(1)
+            self.get_logger().info('Charging dock verified.')
+
+        elif task == 'load_pickup':
+            self.get_logger().info('Simulating inbound package pickup...')
+            time.sleep(2)
+            self.get_logger().info('Inbound package pickup confirmed.')
+
+        elif task == 'shelf_scan':
+            self.get_logger().info('Simulating inventory shelf scan...')
+            time.sleep(2)
+            self.get_logger().info('Inventory scan data collected.')
+
+        elif task == 'aisle_patrol':
+            self.get_logger().info('Performing autonomous patrol corridor check...')
+            time.sleep(2)
+            self.get_logger().info('Patrol corridor check completed.')
+
+        elif task == 'mission_docking':
+            self.get_logger().info('Returning to dock for mission closeout...')
+            time.sleep(2)
+            self.get_logger().info('Robot parked at return dock.')
+
+        else:
+            self.get_logger().warn(f'Unknown task type: {task}')
+            return False
+
+        return True
+
+    def print_mission_summary(self):
+
+        total = len(self.waypoints)
+
+        self.get_logger().info('========================================')
+        self.get_logger().info('WAREHOUSE MISSION COMPLETE')
+        self.get_logger().info(f'Total mission steps: {total}')
+        self.get_logger().info(f'Successful tasks: {self.successful_tasks}')
+        self.get_logger().info(f'Failed tasks: {self.failed_tasks}')
+        self.get_logger().info('Robot completed autonomous warehouse workflow.')
+        self.get_logger().info('========================================')
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = WarehouseAutonomy()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+===== PERCEPTION NODE =====
+#!/usr/bin/env python3
+
+import cv2
+import rclpy
+
+from cv_bridge import CvBridge
+from rclpy.node import Node
+from sensor_msgs.msg import Image
+from std_msgs.msg import Int32, Bool
+
+
+class ArucoStationDetector(Node):
+
+    def __init__(self):
+        super().__init__('aruco_station_detector')
+
+        self.declare_parameter('image_topic', '/camera/image_raw')
+        self.declare_parameter('debug_window', True)
+
+        self.image_topic = self.get_parameter('image_topic').value
+        self.debug_window = self.get_parameter('debug_window').value
+
+        self.bridge = CvBridge()
+
+        self.marker_pub = self.create_publisher(Int32, '/warehouse/marker_id', 10)
+        self.detected_pub = self.create_publisher(Bool, '/warehouse/marker_detected', 10)
+
+        self.image_sub = self.create_subscription(
+            Image,
+            self.image_topic,
+            self.image_callback,
+            10
+        )
+
+        self.dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_50)
+        self.parameters = cv2.aruco.DetectorParameters()
+
+        self.detector = cv2.aruco.ArucoDetector(
+            self.dictionary,
+            self.parameters
+        )
+
+        self.get_logger().info('ArUco station detector started.')
+        self.get_logger().info(f'Subscribing to image topic: {self.image_topic}')
+
+    def image_callback(self, msg):
+
+        frame = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
+
+        corners, ids, _ = self.detector.detectMarkers(frame)
+
+        detected_msg = Bool()
+        marker_msg = Int32()
+
+        if ids is not None and len(ids) > 0:
+            marker_id = int(ids[0][0])
+
+            detected_msg.data = True
+            marker_msg.data = marker_id
+
+            self.marker_pub.publish(marker_msg)
+            self.detected_pub.publish(detected_msg)
+
+            cv2.aruco.drawDetectedMarkers(frame, corners, ids)
+
+            self.get_logger().info(
+                f'ArUco marker detected: ID={marker_id}',
+                throttle_duration_sec=1.0
+            )
+
+        else:
+            detected_msg.data = False
+            self.detected_pub.publish(detected_msg)
+
+        if self.debug_window:
+            cv2.imshow('Warehouse ArUco Station Detector', frame)
+            cv2.waitKey(1)
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = ArucoStationDetector()
+
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+
+    cv2.destroyAllWindows()
+    node.destroy_node()
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+
+===== DOCKING NODE =====
+#!/usr/bin/env python3
+
+import cv2
+import rclpy
+import numpy as np
+
+from cv_bridge import CvBridge
+from geometry_msgs.msg import Twist
+from rclpy.node import Node
+from sensor_msgs.msg import Image
+
+
+class VisionDockingController(Node):
+
+    def __init__(self):
+
+        super().__init__('vision_docking_controller')
+
+        self.bridge = CvBridge()
+
+        self.cmd_pub = self.create_publisher(
+            Twist,
+            '/cmd_vel',
+            10
+        )
+
+        self.image_sub = self.create_subscription(
+            Image,
+            '/camera/image_raw',
+            self.image_callback,
+            10
+        )
+
+        self.dictionary = cv2.aruco.getPredefinedDictionary(
+            cv2.aruco.DICT_5X5_250
+        )
+
+        self.parameters = cv2.aruco.DetectorParameters()
+
+        self.detector = cv2.aruco.ArucoDetector(
+            self.dictionary,
+            self.parameters
+        )
+
+        self.target_marker_id = 0
+
+        self.image_center_x = 320
+
+        self.center_tolerance = 30
+
+        self.forward_speed = 0.04
+        self.rotation_speed = 0.15
+
+        self.stop_area_threshold = 45000
+
+        self.get_logger().info(
+            'Vision Docking Controller Started'
+        )
+
+    def image_callback(self, msg):
+
+        frame = self.bridge.imgmsg_to_cv2(
+            msg,
+            desired_encoding='bgr8'
+        )
+
+        corners, ids, _ = self.detector.detectMarkers(frame)
+
+        twist = Twist()
+
+        if ids is not None:
+
+            for i, marker_id in enumerate(ids):
+
+                marker_id = int(marker_id[0])
+
+                if marker_id == self.target_marker_id:
+
+                    marker_corners = corners[i][0]
+
+                    center_x = int(
+                        np.mean(marker_corners[:, 0])
+                    )
+
+                    center_error = (
+                        center_x - self.image_center_x
+                    )
+
+                    marker_area = cv2.contourArea(
+                        marker_corners.astype(np.float32)
+                    )
+
+                    cv2.aruco.drawDetectedMarkers(
+                        frame,
+                        [marker_corners]
+                    )
+
+                    cv2.putText(
+                        frame,
+                        f'ID:{marker_id}',
+                        (20, 40),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        1,
+                        (0, 255, 0),
+                        2
+                    )
+
+                    cv2.putText(
+                        frame,
+                        f'Area:{int(marker_area)}',
+                        (20, 80),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        1,
+                        (0, 255, 0),
+                        2
+                    )
+
+                    if marker_area > self.stop_area_threshold:
+
+                        twist.linear.x = 0.0
+                        twist.angular.z = 0.0
+
+                        self.get_logger().info(
+                            'Docking complete.',
+                            throttle_duration_sec=2.0
+                        )
+
+                    else:
+
+                        if abs(center_error) > self.center_tolerance:
+
+                            twist.angular.z = (
+                                -self.rotation_speed
+                                if center_error > 0
+                                else self.rotation_speed
+                            )
+
+                        else:
+
+                            twist.linear.x = self.forward_speed
+
+                    self.cmd_pub.publish(twist)
+
+                    cv2.imshow(
+                        'Vision Docking Controller',
+                        frame
+                    )
+
+                    cv2.waitKey(1)
+
+                    return
+
+        twist.linear.x = 0.0
+        twist.angular.z = 0.0
+
+        self.cmd_pub.publish(twist)
+
+        cv2.imshow(
+            'Vision Docking Controller',
+            frame
+        )
+
+        cv2.waitKey(1)
+
+
+def main(args=None):
+
+    rclpy.init(args=args)
+
+    node = VisionDockingController()
+
+    try:
+        rclpy.spin(node)
+
+    except KeyboardInterrupt:
+        pass
+
+    cv2.destroyAllWindows()
+
+    node.destroy_node()
+
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
