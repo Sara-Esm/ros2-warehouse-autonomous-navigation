@@ -147,7 +147,7 @@ The robot executes a 5-step autonomous inspection mission:
 [COMPLETE] Mission summary logged
 ```
 
-Each station is verified by detecting the expected ArUco marker ID within an 8-second window using the robot's onboard camera.
+Each station is verified by detecting the expected ArUco marker ID within an 15-second window using the robot's onboard camera.
 
 ---
 
