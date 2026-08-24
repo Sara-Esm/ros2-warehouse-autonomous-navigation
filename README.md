@@ -7,7 +7,7 @@
 
 ---
 
-> A fully autonomous warehouse inspection robot built with ROS 2 Humble, Nav2, and computer vision. The robot navigates to 4 warehouse stations, verifies each location using ArUco marker detection, and returns home — completing a full mission with zero human intervention.
+> A fully autonomous warehouse inspection robot built with ROS 2 Humble, Nav2, and computer vision. The robot autonomously visits four warehouse stations, verifies each station using ArUco markers, and returns to the charging dock as part of a five-step mission.
 
 ---
 
@@ -42,25 +42,35 @@ Total mission steps: 5  |  Successful tasks: 5  |  Failed tasks: 0
 ## 🏗️ System Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    warehouse_bringup                        │
-│  ┌─────────────┐  ┌──────────────┐  ┌───────────────────┐   │
-│  │   Gazebo    │  │     Nav2     │  │  Autonomy Node    │   │
-│  │ Simulation  │  │   Stack      │  │  (Mission Manager)│   │
-│  └──────┬──────┘  └──────┬───────┘  └────────┬──────────┘   │
-│         │                │                    │             │
-│  ┌──────▼──────┐  ┌──────▼───────┐  ┌────────▼──────────┐   │
-│  │ TurtleBot3  │  │ AMCL + Map   │  │  NavigateToPose   │   │
-│  │  burger_cam │  │    Server    │  │   Action Client   │   │
-│  └──────┬──────┘  └──────────────┘  └───────────────────┘   │
-│         │                                                   │
-│  ┌──────▼──────────────────┐                                │
-│  │   warehouse_perception  │                                │
-│  │  ArUco Station Detector │                                │
-│  │  /camera/image_raw  →   │                                │
-│  │  /warehouse/marker_id   │                                │
-│  └─────────────────────────┘                                │
-└─────────────────────────────────────────────────────────────┘
+                 ┌───────────────┐
+                 │   Gazebo      │
+                 │  Simulation   │
+                 └───────┬───────┘
+                         │
+                    Sensor data
+                    /          \
+                   ↓            ↓
+              LiDAR /scan    Camera
+                  │              │
+                  ↓              ↓
+               AMCL          ArUco
+                  │         Detection
+                  ↓              │
+              Localization       │
+                  │              │
+                  └──────┬───────┘
+                         ↓
+                   Mission Manager
+                         │
+                         ↓
+                  NavigateToPose
+                         │
+                         ↓
+                       Nav2
+                         │
+                         ↓
+                    Robot motion
+
 ```
 
 ### ROS 2 Topic Graph
@@ -182,7 +192,7 @@ sudo apt install python3-opencv ros-humble-cv-bridge
 ```bash
 mkdir -p ~/warehouse_ws/src
 cd ~/warehouse_ws/src
-git clone https://github.com/Sara-Esm/ros2-warehouse-autonomous-navigation.git .
+git clone https://github.com/Sara-Esm/ros2-autonomous-warehouse-navigation.git .
 
 cd ~/warehouse_ws
 colcon build
